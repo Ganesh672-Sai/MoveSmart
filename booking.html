@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Bus</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="./homepage.html">Home</a></li>
+            <li><a href="./Tracking.html">Tracking</a></li>
+            <li><a href="./booking.html">Booking Bus</a></li>
+            <li><a href="./conta.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Booking Form Section -->
+    <section id="booking">
+        <h2>Book an Autonomous Bus</h2>
+        <form action="https://forms.gle/8bzPdyfbPbD4Kkbn6" method="GET" target="_blank">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required><br><br>
+
+            <label for="source">Select Source:</label>
+            <select id="source" name="source" required>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Warangal">Warangal</option>
+                <option value="Khammam">Khammam</option>
+            </select><br><br>
+
+            <label for="destination">Select Destination:</label>
+            <select id="destination" name="destination" required>
+                <option value="Warangal">Warangal</option>
+                <option value="Khammam">Khammam</option>
+                <option value="Hyderabad">Hyderabad</option>
+            </select><br><br>
+
+            <label for="travel-date">Preferred Travelling Date:</label>
+            <input type="date" id="travel-date" name="travel-date" required><br><br>
+
+            <label for="time-slot">Select Time Slot:</label>
+            <select id="time-slot" name="time-slot" required>
+                <option value="6AM-9AM">6 AM - 9 AM</option>
+                <option value="9AM-12PM">9 AM - 12 PM</option>
+                <option value="12PM-3PM">12 PM - 3 PM</option>
+                <option value="3PM-6PM">3 PM - 6 PM</option>
+                <option value="6PM-9PM">6 PM - 9 PM</option>
+            </select><br><br>
+
+            <button type="submit">Book Bus</button>
+        </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Autonomous Bus Support Portal | <a href="./conta.html">Contact Us</a></p>
+        <p><br> Done By Mudu.sai 2024 <br></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Health and Location Tracker</title>
+
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            margin: 20px;
+            gap: 20px;
+        }
+
+        #map {
+            height: 500px;
+            flex: 2;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+        }
+
+        .sidebar {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+
+        .bus-info {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .bus-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .map-options {
+            margin-top: 20px;
+        }
+
+        /* Status Colors */
+        .working { background-color: #d4edda; color: #155724; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .damaged { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="./homepage.html">Home</a></li>
+            <li><a href="./Tracking.html">Tracking</a></li>
+            <li><a href="./booking.html">Booking Hospitals</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Bus Health and Location Tracker</h1>
+    </header>
+
+    <div class="container">
+        <div id="map"></div>
+
+        <div class="sidebar">
+            <div class="bus-info working" id="bus1-info">
+                <h3>Bus 1: Working</h3>
+                <p><b>Fuel Level:</b> 70%</p>
+                <p><b>Damage:</b> None</p>
+                <p><b>Last Service:</b> 1 month ago</p>
+                <p><b>Mileage:</b> 10,000 km</p>
+                <p><b>Engine Status:</b> Good</p>
+            </div>
+
+            <div class="bus-info warning" id="bus2-info">
+                <h3>Bus 2: Warning</h3>
+                <p><b>Fuel Level:</b> 30%</p>
+                <p><b>Damage:</b> Moderate (front axle)</p>
+                <p><b>Last Service:</b> 3 months ago</p>
+                <p><b>Mileage:</b> 8,500 km</p>
+                <p><b>Engine Status:</b> Needs Checkup</p>
+            </div>
+
+            <div class="bus-info damaged" id="bus3-info">
+                <h3>Bus 3: Damaged</h3>
+                <p><b>Fuel Level:</b> 10%</p>
+                <p><b>Damage:</b> Severe (engine failure)</p>
+                <p><b>Last Service:</b> 6 months ago</p>
+                <p><b>Mileage:</b> 5,000 km</p>
+                <p><b>Engine Status:</b> Not Operational</p>
+            </div>
+
+            <div class="map-options">
+                <h3>Map Options</h3>
+                <label><input type="checkbox" id="trafficLayerToggle"> Traffic View</label><br>
+                <label><input type="checkbox" id="transitLayerToggle"> Public Transport View</label><br>
+
+                <label for="mapType">Map View:</label>
+                <select id="mapType">
+                    <option value="roadmap">Roadmap</option>
+                    <option value="satellite">Satellite</option>
+                    <option value="hybrid">Hybrid</option>
+                    <option value="terrain">Terrain</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let map, trafficLayer, transitLayer;
+
+        function initMap() {
+            const buses = [
+                { lat: -34.397, lng: 150.644, status: 'working' },
+                { lat: -34.497, lng: 150.744, status: 'warning' },
+                { lat: -34.597, lng: 150.844, status: 'damaged' },
+            ];
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                center: buses[0],
+                mapTypeId: 'roadmap',
+            });
+
+            // Initialize traffic and transit layers
+            trafficLayer = new google.maps.TrafficLayer();
+            transitLayer = new google.maps.TransitLayer();
+
+            // Add markers for buses
+            buses.forEach((bus, index) => {
+                new google.maps.Marker({
+                    position: bus,
+                    map: map,
+                    title: `Bus ${index + 1}`,
+                    icon: {
+                        url: getMarkerColor(bus.status),
+                        scaledSize: new google.maps.Size(40, 40),
+                    },
+                });
+            });
+
+            // Event listeners for layer toggles
+            document.getElementById('trafficLayerToggle').addEventListener('change', (e) => {
+                trafficLayer.setMap(e.target.checked ? map : null);
+            });
+
+            document.getElementById('transitLayerToggle').addEventListener('change', (e) => {
+                transitLayer.setMap(e.target.checked ? map : null);
+            });
+
+            // Event listener for map type selector
+            document.getElementById('mapType').addEventListener('change', (e) => {
+                map.setMapTypeId(e.target.value);
+            });
+        }
+
+        function getMarkerColor(status) {
+            if (status === 'working') return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+            if (status === 'warning') return 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+            return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+        }
+    </script>
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+
+</body>
+</html>

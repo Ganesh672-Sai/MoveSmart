@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveSmart</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        header {
+            text-align: center;
+            padding: 4pc;
+            background-color: #a8e8aa;
+            color: white;
+        }
+
+        .overview {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bus-image {
+            flex: 1;
+            max-width: 40%;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .text-content {
+            flex: 2;
+        }
+
+        .text-content h2, .text-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .text-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .text-content ul {
+            margin-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #9fe0a1;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="./homepage.html">Home</a></li>
+            <li><a href="./Tracking.html">Tracking</a></li>
+            <li><a href="./booking.html">Booking Bus</a></li>
+            <li><a href="./conta.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Autonomous Bus Support Portal</h1>
+    </header>
+
+    <!-- Overview Section -->
+    <div class="overview">
+        <img src="./bus-image.jpg.jpg" alt="Autonomous Bus" class="bus-image">
+
+        <div class="text-content">
+            <h2>Overview of Electric Autonomous Buses</h2>
+            <p> Autonomous Buses:
+                Autonomous buses use AI-powered systems, such as LiDAR, cameras, and radar, to navigate without human drivers.
+                They can detect obstacles, monitor traffic conditions, and adjust speed in real time.
+                These buses aim to reduce human errors, potentially lowering accident rates.
+                Autonomous buses improve efficiency by optimizing routes and operating continuously.
+                Trials are ongoing globally, but challenges like regulatory approval and infrastructure needs remain. </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Autonomous Bus Support Portal | <a href="./conta.html">Contact Us</a></p>
+        <p>Done by Mudu Sai Ganesh, 2024</p>
+    </footer>
+</body>
+</html>
