@@ -1,12 +1,18 @@
 /* General styles */
-body {
-    font-family: 'Open Sans', sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Headings */
 h1, h2, h3 {
     font-weight: 700;
     color: #444;
@@ -35,6 +41,7 @@ nav {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 nav ul {
@@ -42,8 +49,6 @@ nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
-    padding: 0;
 }
 
 nav ul li {
@@ -93,6 +98,7 @@ section {
     justify-content: space-around;
 }
 
+/* Card Styling */
 .card {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -124,8 +130,28 @@ section {
     color: #666;
 }
 
-/* Button styling */
-button, .btn {
+/* Form Styling */
+form {
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button[type="submit"], .btn {
+    width: 100%;
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -141,33 +167,16 @@ button:hover, .btn:hover {
     transform: scale(1.05);
 }
 
-/* Form styling */
-form {
-    max-width: 500px;
-    margin: 20px auto;
-    text-align: left;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-button[type="submit"] {
-    width: 100%;
-}
-
-/* Footer styling */
+/* Footer Styling */
 footer {
     background-color: #333;
     color: white;
     padding: 20px 0;
     text-align: center;
     margin-top: 50px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 footer p {
